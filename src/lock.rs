@@ -214,17 +214,6 @@ pub fn spawn_absence_sentinel(
                 absent_since = None;
                 continue;
             }
-            if absent_since.is_none() {
-                // Fires exactly once per absence streak, right as it
-                // starts, rather than on every subsequent poll.
-                crate::notify::show(
-                    "OhMyLock",
-                    &format!(
-                        "Yüzünüz görünmüyor, {} saniye sonra kilitlenecek",
-                        ABSENCE_LOCK_AFTER.as_secs()
-                    ),
-                );
-            }
             let since = *absent_since.get_or_insert_with(Instant::now);
             if since.elapsed() >= ABSENCE_LOCK_AFTER {
                 let _ = proxy.send_event(UserEvent::LockRequested);
