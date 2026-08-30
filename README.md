@@ -152,11 +152,13 @@ ekranıyla aynı grafit/lacivert görsel dilde):
 - **Canlılık tespiti** — yukarıdaki anti-spoof kontrolünün açma/kapama
   anahtarı.
 - **Yüz görünmediğinde kilitle** — kilit açıkken kamerayı seyrek (4 sn'de
-  bir) örnekler; ~20 saniye kimse görünmezse ekranı otomatik kilitler
-  (masadan kalkıp uzaklaşmayı unutma senaryosu için). **Varsayılan kapalı**:
-  açıkken kamera ve yüz modelleri kilit açıkken de yüklü kalır, bu da
-  uygulamanın normal ~%0 boşta CPU/70 MB RAM ayak izinden ödün verir --
-  bkz. "Performans notları".
+  bir) örnekler; kimse görünmemeye başladığı anda "Yüzünüz görünmüyor, 10
+  saniye sonra kilitlenecek" bildirimi gösterilir (macOS), ~10 saniye
+  kimse görünmezse ekranı otomatik kilitler (masadan kalkıp uzaklaşmayı
+  unutma senaryosu için). **Varsayılan kapalı**: açıkken kamera ve yüz
+  modelleri kilit açıkken de yüklü kalır, bu da uygulamanın normal ~%0
+  boşta CPU/70 MB RAM ayak izinden ödün verir -- bkz. "Performans
+  notları".
 - **Yüzü Yeniden Tanımla** — kayıtlı yüzü, terminale dönmeden doğrudan bu
   pencereden yeniden kaydeder (8 örnek kamerada taranır, ilerleme
   düğmenin üzerinde gösterilir).

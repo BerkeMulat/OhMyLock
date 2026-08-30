@@ -5,6 +5,7 @@ mod face_engine;
 #[cfg(target_os = "macos")]
 mod kiosk_macos;
 mod lock;
+mod notify;
 mod render;
 mod settings_render;
 mod storage;
