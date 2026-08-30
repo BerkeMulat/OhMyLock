@@ -13,12 +13,19 @@ yüklenmemişken) **~70 MB RAM, ~%0 CPU**. Kilitliyken kamera 640x480 @ 2 Hz
 
 ## Güvenlik tasarımı — önemli
 
-- Kilit ekranı normal UI yollarıyla (kapatma düğmesi, Alt+F4, pencere
+- Kilit ekranı normal UI yollarıyla (kapatma düğmesi, işletim sisteminin
+  kendi "pencereyi kapat" kısayolu -- örn. Windows'ta Alt+F4 --, pencere
   dışına tıklama) **kasıtlı olarak** kapatılamaz; yalnızca doğrulanmış bir
   yüz eşleşmesiyle kapanır.
 - Kilit aktifken tepsi menüsündeki "Çıkış" da kasıtlı olarak devre dışıdır
   (aksi halde uygulamayı kapatmak kilidi atlatmanın bir yolu olurdu).
   "Çıkış" yalnızca kilit açıkken çalışır.
+- **macOS'ta** kilit aktifken şu kaçış yolları da kapatılır: Cmd+Q,
+  Cmd+Tab / Cmd+Option+Esc (uygulama değiştirme), ve Mission Control /
+  App Exposé (F3 tuşu ile ya da Control+Yukarı Ok / Control+Aşağı Ok
+  kısayollarıyla). Sonuncusu için Erişilebilirlik izni gerekir (bkz.
+  "Kurulum" → macOS); izin verilmezse yalnızca bu tek koruma sessizce
+  devre dışı kalır, diğerleri etkilenmez.
 - İşletim sisteminin kendi süreç yönetimi (Görev Yöneticisi / `taskkill`,
   Activity Monitor, `kill`, güvenli mod) her zaman geçerli bir kapatma
   yoludur ve bu uygulama bunu engellemeye **çalışmaz**. Bu kasıtlıdır:
@@ -86,7 +93,12 @@ https://rustup.rs üzerinden kurulur (Windows/macOS/Linux hepsinde aynı).
   göre); `libxdo-dev`.
 - **macOS**: Ekstra kurulum gerekmez. İlk kilitlemede Sistem Ayarları →
   Gizlilik ve Güvenlik → Kamera'dan uygulamayı çalıştırdığın terminale
-  (Terminal.app / iTerm / vb.) kamera izni vermen istenecek.
+  (Terminal.app / iTerm / vb.) kamera izni vermen istenecek. Mission
+  Control'ü (F3) engelleme özelliğinin çalışması için ayrıca Sistem
+  Ayarları → Gizlilik ve Güvenlik → Erişilebilirlik'ten de izin vermen
+  gerekir -- vermezsen uygulama yine normal çalışır, sadece bu tek koruma
+  pasif kalır (bkz. "Güvenlik tasarımı" yukarıda). İzni sonradan verirsen
+  yeniden başlatmana gerek yok, bir sonraki kilitlemede devreye girer.
 - **Windows**: Ekstra kurulum gerekmez (Media Foundation kullanılır).
 
 ### 3. ONNX modellerini indir
@@ -152,7 +164,7 @@ ekranıyla aynı grafit/lacivert görsel dilde):
 - **Canlılık tespiti** — yukarıdaki anti-spoof kontrolünün açma/kapama
   anahtarı.
 - **Yüz görünmediğinde kilitle** — kilit açıkken kamerayı seyrek (4 sn'de
-  bir) örnekler; ~20 saniye kimse görünmezse ekranı otomatik kilitler
+  bir) örnekler; ~10 saniye kimse görünmezse ekranı otomatik kilitler
   (masadan kalkıp uzaklaşmayı unutma senaryosu için). **Varsayılan kapalı**:
   açıkken kamera ve yüz modelleri kilit açıkken de yüklü kalır, bu da
   uygulamanın normal ~%0 boşta CPU/70 MB RAM ayak izinden ödün verir --

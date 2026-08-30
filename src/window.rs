@@ -580,12 +580,12 @@ impl ApplicationHandler<UserEvent> for App {
     }
 
     fn about_to_wait(&mut self, event_loop: &ActiveEventLoop) {
-        if let Some(target) = self.pending_close {
-            if Instant::now() >= target {
-                self.pending_close = None;
-                self.close_lock_window(event_loop);
-                return;
-            }
+        if let Some(target) = self.pending_close
+            && Instant::now() >= target
+        {
+            self.pending_close = None;
+            self.close_lock_window(event_loop);
+            return;
         }
         if let Some(window) = &self.window {
             window.request_redraw();

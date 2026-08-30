@@ -26,6 +26,12 @@ winit = "0.30.13"
 # in so this doesn't drag in a second copy of the AppKit bindings.
 objc2 = "0.6.4"
 objc2-app-kit = { version = "0.3.2", features = ["NSApplication", "NSResponder", "NSWindow", "NSView", "NSRunningApplication", "NSMenu", "NSMenuItem"] }
+# CGEventTap: the low-level keyboard event tap that blocks Mission Control's
+# F3 (and its Control+Up/Down alternates) while locked -- see the "Mission
+# Control" section of kiosk_macos.rs's module docs for why nothing in
+# NSApplicationPresentationOptions covers this the way it does Cmd+Tab.
+objc2-core-foundation = { version = "0.3.2", features = ["CFRunLoop"] }
+objc2-core-graphics = { version = "0.3.2", features = ["CGEvent", "CGEventTypes"] }
 raw-window-handle = "0.6.2"
 
 [profile.release]
